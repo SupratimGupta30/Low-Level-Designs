@@ -20,22 +20,28 @@ class StandardGameRules(GameRules):
     def isvalidMove(self, board: Board, row: int, col: int):
         return board.is_cell_empty(row, col)
 
+    def _get_cell_value(self, board: Board, row: int, col: int):
+        cell = board.get_cell(row, col)
+        return cell.get_symbol() if isinstance(cell, Symbol) else cell
+
     def checkWin(self, board: Board, symbol: Symbol):
         size = board.get_size()
+        target = symbol.get_symbol()
+
         # Check rows
         for row in range(size):
-            if all(board.get_cell(row, col) == symbol.get_symbol() for col in range(size)):
+            if all(self._get_cell_value(board, row, col) == target for col in range(size)):
                 return True
 
         # Check columns
         for col in range(size):
-            if all(board.get_cell(row, col) == symbol.get_symbol() for row in range(size)):
+            if all(self._get_cell_value(board, row, col) == target for row in range(size)):
                 return True
 
         # Check diagonals
-        if all(board.get_cell(i, i) == symbol.get_symbol() for i in range(size)):
+        if all(self._get_cell_value(board, i, i) == target for i in range(size)):
             return True
-        if all(board.get_cell(i, size - 1 - i) == symbol.get_symbol() for i in range(size)):
+        if all(self._get_cell_value(board, i, size - 1 - i) == target for i in range(size)):
             return True
 
         return False

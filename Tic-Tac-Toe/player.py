@@ -1,8 +1,8 @@
 from symbol import Symbol
 
 class Player:
-    def __init__(self, id: int, name: str, symbol: Symbol):
-        self.__id = id
+    def __init__(self, name: str, symbol: Symbol):
+        self.__id = id(self)  # Unique identifier for the player
         self.__name = name
         self.__symbol = symbol
         self.score = 0  # Initialize score to 0
