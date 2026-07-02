@@ -17,3 +17,8 @@ class Inventory:
             self.stock[item] -= 1
         else:
             raise ValueError(f"Item {item.get_name()} is out of stock.")
+        
+    def display_inventory(self) -> None:
+        print("Current Inventory:")
+        for item, quantity in self.stock.items():
+            print(f"{item.get_name()} - ${item.get_price():.2f} - Quantity: {quantity}")

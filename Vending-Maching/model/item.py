@@ -1,5 +1,5 @@
 class Item:
-    def __init__(self, name: str, price: float):
+    def __init__(self, name: str, price: int):
         self.__name = name
         self.__price = price
 
@@ -14,8 +14,8 @@ class Item:
         if not isinstance(other, Item):
             return False
         # 2. Compare the specific metadata attributes
-        return self.name == other.name and self.price == other.price
+        return self.__name == other.__name and self.__price == other.__price
 
     def __hash__(self):
         # Use a tuple of the same attributes to generate a composite hash
-        return hash((self.name, self.price))
+        return hash((self.__name, self.__price))
