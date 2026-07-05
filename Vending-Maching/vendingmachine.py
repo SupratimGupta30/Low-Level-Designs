@@ -42,3 +42,13 @@ class VendingMachine:
     # Inventory management
     def get_inventory(self) -> Inventory:
         return self.__inventory
+
+    # Item helpers
+
+    def set_selected_item(self, item: Item):
+        self.__items = item
+
+    def get_selected_item(self):
+        return self.__items
+
+    
